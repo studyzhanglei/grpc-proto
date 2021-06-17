@@ -5,7 +5,7 @@
 
 - [search.proto](#search.proto)
   
-    - [SearchError](#error.SearchError)
+    - [SearchError](#exception.SearchError)
   
   
   
@@ -23,7 +23,7 @@
  
 
 
-<a name="error.SearchError"></a>
+<a name="exception.SearchError"></a>
 
 ### SearchError
 

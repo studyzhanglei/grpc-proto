@@ -6,6 +6,8 @@
 - [search.proto](#search.proto)
     - [SearchRequest](#search.SearchRequest)
     - [SearchResponse](#search.SearchResponse)
+    - [UserInfoRequest](#search.UserInfoRequest)
+    - [UserInfoResponse](#search.UserInfoResponse)
   
   
   
@@ -54,6 +56,39 @@
 
 
 
+
+<a name="search.UserInfoRequest"></a>
+
+### UserInfoRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [common.CommonHeader](#common.CommonHeader) |  |  |
+| uid | [uint64](#uint64) |  |  |
+
+
+
+
+
+
+<a name="search.UserInfoResponse"></a>
+
+### UserInfoResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| status | [common.BusinessStatus](#common.BusinessStatus) |  |  |
+| ud | [uint64](#uint64) |  |  |
+| username | [string](#string) |  |  |
+
+
+
+
+
  
 
  
@@ -69,6 +104,7 @@
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | Search | [SearchRequest](#search.SearchRequest) stream | [SearchResponse](#search.SearchResponse) stream |  |
+| GetUserInfo | [UserInfoRequest](#search.UserInfoRequest) stream | [UserInfoResponse](#search.UserInfoResponse) stream |  |
 
  
 

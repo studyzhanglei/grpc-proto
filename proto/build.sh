@@ -103,12 +103,8 @@ done
 
 #删除旧生成的pb文件
 work_path=$(dirname $(readlink -f "$0"))
-echo $work_path../go/errors
-rm -rf $work_path/../go/errors
-rm -rf $work_path/../go/proto
-rm -rf $work_path/../php/UtoExceptions
-rm -rf $work_path/../php/UtoProto
-rm -rf $work_path/../php/GPBMetadata
+rm -rf $work_path/../pb
+rm -rf $work_path/../pb_doc
 
 #默认不传以当前目录为起点
 if [ ${#arr[@]} -eq 0 ]; then

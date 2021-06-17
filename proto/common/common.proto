@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package common;
 
-option go_package = "grpc-proto/pb/common;common";
+option go_package = "github.com/studyzhanglei/grpc-proto/pb/common;common";
 
 //公共请求头
 message CommonHeader {

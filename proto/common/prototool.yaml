@@ -6,7 +6,7 @@ generate:
   plugins:
     - name: go
       flags: plugins=grpc
-      output: ../../../
+      output: ../../../../../
 
     - name: doc
       path: protoc-gen-doc

@@ -2,12 +2,13 @@ syntax = "proto3";
 
 package search;
 
-option go_package = "grpc-proto/pb/search;search";
+option go_package = "github.com/studyzhanglei/grpc-proto/pb/search;search";
 
 import "common.proto";
 
 service SearchService {
   rpc Search(stream SearchRequest) returns (stream SearchResponse);
+  rpc GetUserInfo(stream UserInfoRequest) returns (stream UserInfoResponse);
 }
 
 message SearchRequest {
@@ -18,4 +19,15 @@ message SearchRequest {
 message SearchResponse {
   common.BusinessStatus status = 1;
   string response = 2;
+}
+
+message UserInfoRequest {
+  common.CommonHeader header = 1;
+  uint64 uid = 2;
+}
+
+message UserInfoResponse {
+  common.BusinessStatus status = 1;
+  uint64 ud = 2;
+  string username = 3;
 }

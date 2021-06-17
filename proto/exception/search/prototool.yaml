@@ -6,9 +6,9 @@ generate:
   plugins:
     - name: go
       flags: plugins=grpc
-      output: ../../../pb/error
+      output: ../../../pb/exception
 
     - name: doc
       path: protoc-gen-doc
       flags: markdown,readme.md
-      output: ../../../pb_doc/error
+      output: ../../../pb_doc/exception

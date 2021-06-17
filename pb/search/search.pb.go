@@ -7,10 +7,10 @@ import (
 	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	common "github.com/studyzhanglei/grpc-proto/pb/common"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	common "grpc-proto/pb/common"
 	math "math"
 )
 
@@ -119,29 +119,139 @@ func (m *SearchResponse) GetResponse() string {
 	return ""
 }
 
+type UserInfoRequest struct {
+	Header               *common.CommonHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
+	Uid                  uint64               `protobuf:"varint,2,opt,name=uid,proto3" json:"uid,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *UserInfoRequest) Reset()         { *m = UserInfoRequest{} }
+func (m *UserInfoRequest) String() string { return proto.CompactTextString(m) }
+func (*UserInfoRequest) ProtoMessage()    {}
+func (*UserInfoRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_453745cff914010e, []int{2}
+}
+
+func (m *UserInfoRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserInfoRequest.Unmarshal(m, b)
+}
+func (m *UserInfoRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserInfoRequest.Marshal(b, m, deterministic)
+}
+func (m *UserInfoRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserInfoRequest.Merge(m, src)
+}
+func (m *UserInfoRequest) XXX_Size() int {
+	return xxx_messageInfo_UserInfoRequest.Size(m)
+}
+func (m *UserInfoRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserInfoRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserInfoRequest proto.InternalMessageInfo
+
+func (m *UserInfoRequest) GetHeader() *common.CommonHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *UserInfoRequest) GetUid() uint64 {
+	if m != nil {
+		return m.Uid
+	}
+	return 0
+}
+
+type UserInfoResponse struct {
+	Status               *common.BusinessStatus `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Ud                   uint64                 `protobuf:"varint,2,opt,name=ud,proto3" json:"ud,omitempty"`
+	Username             string                 `protobuf:"bytes,3,opt,name=username,proto3" json:"username,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
+	XXX_unrecognized     []byte                 `json:"-"`
+	XXX_sizecache        int32                  `json:"-"`
+}
+
+func (m *UserInfoResponse) Reset()         { *m = UserInfoResponse{} }
+func (m *UserInfoResponse) String() string { return proto.CompactTextString(m) }
+func (*UserInfoResponse) ProtoMessage()    {}
+func (*UserInfoResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_453745cff914010e, []int{3}
+}
+
+func (m *UserInfoResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserInfoResponse.Unmarshal(m, b)
+}
+func (m *UserInfoResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserInfoResponse.Marshal(b, m, deterministic)
+}
+func (m *UserInfoResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserInfoResponse.Merge(m, src)
+}
+func (m *UserInfoResponse) XXX_Size() int {
+	return xxx_messageInfo_UserInfoResponse.Size(m)
+}
+func (m *UserInfoResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserInfoResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserInfoResponse proto.InternalMessageInfo
+
+func (m *UserInfoResponse) GetStatus() *common.BusinessStatus {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+func (m *UserInfoResponse) GetUd() uint64 {
+	if m != nil {
+		return m.Ud
+	}
+	return 0
+}
+
+func (m *UserInfoResponse) GetUsername() string {
+	if m != nil {
+		return m.Username
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*SearchRequest)(nil), "search.SearchRequest")
 	proto.RegisterType((*SearchResponse)(nil), "search.SearchResponse")
+	proto.RegisterType((*UserInfoRequest)(nil), "search.UserInfoRequest")
+	proto.RegisterType((*UserInfoResponse)(nil), "search.UserInfoResponse")
 }
 
 func init() { proto.RegisterFile("search.proto", fileDescriptor_453745cff914010e) }
 
 var fileDescriptor_453745cff914010e = []byte{
-	// 222 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x5c, 0x90, 0xbf, 0x4b, 0xc5, 0x30,
-	0x10, 0xc7, 0x89, 0x43, 0xd4, 0xf3, 0xe9, 0x10, 0xf4, 0x51, 0x2a, 0xc2, 0xe3, 0x4d, 0x1d, 0x34,
-	0x4f, 0xea, 0xd8, 0xad, 0x2e, 0x0e, 0x4e, 0xe9, 0x20, 0x88, 0x4b, 0x1b, 0x0f, 0xdb, 0xa1, 0x4d,
-	0xcc, 0xa5, 0xfe, 0xfd, 0x42, 0x7e, 0x08, 0xbe, 0xe9, 0xb8, 0xcf, 0x7d, 0xef, 0x43, 0x2e, 0xb0,
-	0x21, 0xec, 0x9d, 0x1e, 0xa5, 0x75, 0xc6, 0x1b, 0xc1, 0x63, 0x57, 0x6e, 0xb4, 0x99, 0x67, 0xb3,
-	0x44, 0xba, 0x7f, 0x83, 0xcb, 0x2e, 0x70, 0x85, 0xdf, 0x2b, 0x92, 0x17, 0xf7, 0xc0, 0x47, 0xec,
-	0x3f, 0xd1, 0x15, 0x6c, 0xc7, 0xaa, 0x8b, 0xfa, 0x5a, 0xa6, 0xfc, 0x73, 0x28, 0x2f, 0x61, 0xa6,
-	0x52, 0x46, 0x14, 0x70, 0xea, 0xe2, 0x62, 0x71, 0xb2, 0x63, 0xd5, 0xb9, 0xca, 0xed, 0xfe, 0x03,
-	0xae, 0xb2, 0x98, 0xac, 0x59, 0x08, 0x85, 0x04, 0x4e, 0xbe, 0xf7, 0x2b, 0x25, 0xf3, 0x36, 0x9b,
-	0xdb, 0x95, 0xa6, 0x05, 0x89, 0xba, 0x30, 0x55, 0x29, 0x25, 0x4a, 0x38, 0x73, 0x69, 0x37, 0xc9,
-	0xff, 0xfa, 0xfa, 0x35, 0x3f, 0xbb, 0x43, 0xf7, 0x33, 0x69, 0x14, 0x0d, 0xf0, 0x08, 0xc4, 0x8d,
-	0x4c, 0x67, 0xff, 0xbb, 0xab, 0xdc, 0x1e, 0xe3, 0x68, 0xaa, 0xd8, 0x23, 0x6b, 0xef, 0xde, 0x6f,
-	0xbf, 0x9c, 0xd5, 0x0f, 0xe1, 0x4b, 0x0e, 0x76, 0x38, 0xc4, 0x68, 0x13, 0xcb, 0xc0, 0x03, 0x7f,
-	0xfa, 0x0d, 0x00, 0x00, 0xff, 0xff, 0x51, 0x7b, 0xed, 0x34, 0x50, 0x01, 0x00, 0x00,
+	// 318 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x92, 0x4f, 0x4b, 0xc3, 0x40,
+	0x10, 0xc5, 0x49, 0x2b, 0x51, 0xa7, 0xb5, 0x96, 0x45, 0x6b, 0xc8, 0xa9, 0xe4, 0xd4, 0x83, 0x26,
+	0x52, 0xc5, 0x4b, 0x6f, 0x55, 0x50, 0x8f, 0xa6, 0x88, 0x20, 0x5e, 0xd2, 0x64, 0x6c, 0x02, 0x76,
+	0x13, 0x77, 0x76, 0x05, 0xfd, 0x18, 0x7e, 0x62, 0xe9, 0xfe, 0xb1, 0x58, 0x6f, 0x3d, 0x6d, 0xe6,
+	0xcd, 0xdb, 0x1f, 0xf3, 0x76, 0x02, 0x5d, 0xc2, 0x4c, 0xe4, 0x65, 0xdc, 0x88, 0x5a, 0xd6, 0xcc,
+	0x37, 0x55, 0xd8, 0xcd, 0xeb, 0xe5, 0xb2, 0xe6, 0x46, 0x8d, 0x9e, 0xe0, 0x60, 0xa6, 0xf5, 0x14,
+	0xdf, 0x15, 0x92, 0x64, 0xa7, 0xe0, 0x97, 0x98, 0x15, 0x28, 0x02, 0x6f, 0xe8, 0x8d, 0x3a, 0xe3,
+	0xa3, 0xd8, 0xfa, 0xaf, 0xf5, 0x71, 0xa7, 0x7b, 0xa9, 0xf5, 0xb0, 0x00, 0x76, 0x85, 0xb9, 0x18,
+	0xb4, 0x86, 0xde, 0x68, 0x3f, 0x75, 0x65, 0xf4, 0x02, 0x3d, 0x07, 0xa6, 0xa6, 0xe6, 0x84, 0x2c,
+	0x06, 0x9f, 0x64, 0x26, 0x15, 0x59, 0xf2, 0xc0, 0x91, 0xa7, 0x8a, 0x2a, 0x8e, 0x44, 0x33, 0xdd,
+	0x4d, 0xad, 0x8b, 0x85, 0xb0, 0x27, 0xec, 0x5d, 0x0b, 0xff, 0xad, 0xa3, 0x07, 0x38, 0x7c, 0x24,
+	0x14, 0xf7, 0xfc, 0xb5, 0xde, 0x6e, 0xf0, 0x3e, 0xb4, 0x55, 0x55, 0x68, 0xee, 0x4e, 0xba, 0xfa,
+	0x8c, 0x38, 0xf4, 0xd7, 0xc8, 0x2d, 0x47, 0xee, 0x41, 0x4b, 0x39, 0x68, 0x4b, 0x15, 0xab, 0x08,
+	0x8a, 0x50, 0xf0, 0x6c, 0x89, 0x41, 0xdb, 0x44, 0x70, 0xf5, 0xf8, 0xdb, 0x73, 0x4f, 0x3f, 0x43,
+	0xf1, 0x51, 0xe5, 0xc8, 0x26, 0xe0, 0x1b, 0x81, 0x1d, 0xc7, 0x76, 0x75, 0x7f, 0x76, 0x13, 0x0e,
+	0x36, 0x65, 0x33, 0xe6, 0xc8, 0x3b, 0xf7, 0xd8, 0x0d, 0x74, 0x6e, 0x51, 0xba, 0x04, 0xec, 0xc4,
+	0x59, 0x37, 0x9e, 0x29, 0x0c, 0xfe, 0x37, 0xd6, 0x94, 0xe9, 0xd5, 0xf3, 0xe5, 0xa2, 0x92, 0xa5,
+	0x9a, 0xaf, 0x82, 0x26, 0x24, 0x55, 0xf1, 0xf9, 0x55, 0x66, 0x7c, 0xf1, 0x86, 0x55, 0xb2, 0x10,
+	0x4d, 0x7e, 0xa6, 0xff, 0x9a, 0xa4, 0x99, 0x27, 0x86, 0x32, 0x31, 0xc7, 0xdc, 0xd7, 0xfa, 0xc5,
+	0x4f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x67, 0x36, 0xb5, 0x92, 0x73, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -157,6 +267,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type SearchServiceClient interface {
 	Search(ctx context.Context, opts ...grpc.CallOption) (SearchService_SearchClient, error)
+	GetUserInfo(ctx context.Context, opts ...grpc.CallOption) (SearchService_GetUserInfoClient, error)
 }
 
 type searchServiceClient struct {
@@ -198,9 +309,41 @@ func (x *searchServiceSearchClient) Recv() (*SearchResponse, error) {
 	return m, nil
 }
 
+func (c *searchServiceClient) GetUserInfo(ctx context.Context, opts ...grpc.CallOption) (SearchService_GetUserInfoClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_SearchService_serviceDesc.Streams[1], "/search.SearchService/GetUserInfo", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &searchServiceGetUserInfoClient{stream}
+	return x, nil
+}
+
+type SearchService_GetUserInfoClient interface {
+	Send(*UserInfoRequest) error
+	Recv() (*UserInfoResponse, error)
+	grpc.ClientStream
+}
+
+type searchServiceGetUserInfoClient struct {
+	grpc.ClientStream
+}
+
+func (x *searchServiceGetUserInfoClient) Send(m *UserInfoRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *searchServiceGetUserInfoClient) Recv() (*UserInfoResponse, error) {
+	m := new(UserInfoResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // SearchServiceServer is the server API for SearchService service.
 type SearchServiceServer interface {
 	Search(SearchService_SearchServer) error
+	GetUserInfo(SearchService_GetUserInfoServer) error
 }
 
 // UnimplementedSearchServiceServer can be embedded to have forward compatible implementations.
@@ -209,6 +352,9 @@ type UnimplementedSearchServiceServer struct {
 
 func (*UnimplementedSearchServiceServer) Search(srv SearchService_SearchServer) error {
 	return status.Errorf(codes.Unimplemented, "method Search not implemented")
+}
+func (*UnimplementedSearchServiceServer) GetUserInfo(srv SearchService_GetUserInfoServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetUserInfo not implemented")
 }
 
 func RegisterSearchServiceServer(s *grpc.Server, srv SearchServiceServer) {
@@ -241,6 +387,32 @@ func (x *searchServiceSearchServer) Recv() (*SearchRequest, error) {
 	return m, nil
 }
 
+func _SearchService_GetUserInfo_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(SearchServiceServer).GetUserInfo(&searchServiceGetUserInfoServer{stream})
+}
+
+type SearchService_GetUserInfoServer interface {
+	Send(*UserInfoResponse) error
+	Recv() (*UserInfoRequest, error)
+	grpc.ServerStream
+}
+
+type searchServiceGetUserInfoServer struct {
+	grpc.ServerStream
+}
+
+func (x *searchServiceGetUserInfoServer) Send(m *UserInfoResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *searchServiceGetUserInfoServer) Recv() (*UserInfoRequest, error) {
+	m := new(UserInfoRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 var _SearchService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "search.SearchService",
 	HandlerType: (*SearchServiceServer)(nil),
@@ -249,6 +421,12 @@ var _SearchService_serviceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "Search",
 			Handler:       _SearchService_Search_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "GetUserInfo",
+			Handler:       _SearchService_GetUserInfo_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},
